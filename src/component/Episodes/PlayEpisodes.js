@@ -2,18 +2,40 @@ import React from 'react';
 import { View, Text, StyleSheet,Image, Dimensions, ScrollView, ImageBackground } from 'react-native';
 import Header from './Header';
 import { colors } from '../../constants';
-const { width, height} = Dimensions.get('window')
-
+import { useSelector } from 'react-redux'
+const { width, height } = Dimensions.get('window')
+import TrackPlayer, {
+    useTrackPlayerProgress,
+    usePlaybackState,
+    useTrackPlayerEvents
+  } from "react-native-track-player";
+function ProgressBar() {
+    const progress = useTrackPlayerProgress();
+  
+    return (
+      <View style={styles.progress}>
+        <View style={{ flex: progress.position, backgroundColor: "red" }} />
+        <View
+          style={{
+            flex: progress.duration - progress.position,
+            backgroundColor: "grey"
+          }}
+        />
+      </View>
+    );
+  }
 const PlayEpisodes = (props) => { 
-    const { name, image, description , audio, episode} = props.route.params.value
+    const { name, description, audio, episode } = props.route.params.value
+    const image = useSelector(state => state.home.selectedChannel.image)
     return (
         <View style={styles.container}>
         <ScrollView bounces={false} style={{flex:1}}>
              {/* header */ }
             <Header name={name} />
             {/* album's image */}
-                <ImageBackground resizeMode="contain" style={styles.image} source={{ uri: image }} >
-                 </ImageBackground>   
+                <ImageBackground resizeMode="cover" style={styles.imageBg} imageStyle={styles.image} source={{ uri: image }} >
+                <ProgressBar />
+                </ImageBackground>   
             {/* Description */}
             <View>
                     <Text style={styles.abouts}> Episode {episode} </Text>
@@ -33,8 +55,14 @@ const styles = StyleSheet.create({
     },
     image: {
         height: 200/765*height,
-        width: width,
-        marginTop: 90/765*height,
+        width: 200/375*width,
+       backgroundColor:'red',
+        marginLeft: "7%",
+    },
+    imageBg: {
+        marginTop: 90 / 765 * height,
+        height: 200/765*height,
+        width: 200/375*width,  
     },
     abouts: {
         marginTop: "5%",

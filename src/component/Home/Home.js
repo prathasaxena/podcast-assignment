@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { colors } from '../../constants';
 import SingleChannelCard from './SingleChannelCard';
-import data from '../../data/data'
+import { useSelector } from 'react-redux'
 
 const Home = (props) => {
+    const home = useSelector(state => state.home)
+    
     return (
         <View style={styles.parent}>
               {/* top picks list */ }
@@ -12,7 +14,7 @@ const Home = (props) => {
             <View style={styles.horizotalFlatListParent}>
                  {/* data from data.json file */ }
                 <FlatList
-                    data={data}
+                    data={home.podcastList}
                     keyExtractor={(item) => item.id}
                     keyExtractor={({item},index)=> index}
                     horizontal={true}
@@ -26,7 +28,7 @@ const Home = (props) => {
                     contentContainerStyle={{ paddingBottom: 100 }}
                     kekeyExtractor={(item) => item.id}
                     numColumns={2}
-                    data={data}
+                    data={home.podcastList}
                     renderItem={({item})=><SingleChannelCard item={item}/>}
                 />
             </View>
@@ -34,7 +36,8 @@ const Home = (props) => {
     )
 
 }
- 
+
+
 export default Home;
 
 const styles = StyleSheet.create({

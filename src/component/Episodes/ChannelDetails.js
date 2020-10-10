@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet,Image, Dimensions, ScrollView } from 'react-native';
 import { colors } from '../../constants';
 import Header from './Header';
 import EpisodesList from './EpisodesList';
+import { useDispatch } from 'react-redux'
 const { width, height} = Dimensions.get('window')
 
 const ChannelDetails = (props) => { 
-    const { channelName, image, titleDesc ,listOfEpisodes} = props.route.params.value
+    const { channelName, image, titleDesc, listOfEpisodes } = props.route.params.value
+    const dispatch = useDispatch();
+   
+    useEffect(() => { 
+        dispatch({type:'SELECTED_CHANNEL_OBJECT', payload: props.route.params.value})
+    },[])
+   
     return (
-       
         <View style={styles.container}>
         <ScrollView bounces={false} style={{flex:1}}>
              {/* header */ }
