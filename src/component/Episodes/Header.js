@@ -3,6 +3,7 @@ import { Text, View, StyleSheet,TouchableOpacity,Dimensions } from 'react-native
 import { colors } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
 import color from '../../constants/color';
+import { Icon } from 'native-base'
 
 const { width, height} = Dimensions.get('window')
 
@@ -11,7 +12,7 @@ const Header = (props) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                <View/>
+                <Icon name="arrow-back-outline" style={styles.headerIcon} type="Ionicons"/>
             </TouchableOpacity>
             <Text style={styles.heading} numberOfLines={1}>{props.name}</Text> 
         </View>
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
         flexDirection: "row",
-        position:'absolute'
     },
     backButton: {
         width: "10%",
@@ -39,7 +39,9 @@ const styles = StyleSheet.create({
         bottom: 7,
         left:10,
         borderRadius: 5,
-        position:'absolute'
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent:'center'
     },
     heading: {
         fontSize: 20,
@@ -51,5 +53,9 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         // position: 'absolute',
         top: 7,
+    },
+    headerIcon: {
+        color: "white",
+        alignSelf:"center"
     }
 })

@@ -14,6 +14,7 @@
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
     "install": "^0.13.0",
+    "native-base": "^2.13.14",
     "npm": "^6.14.8",
     "react": "16.13.1",
     "react-native": "0.63.3",
@@ -22,6 +23,7 @@
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.11.0",
     "react-native-track-player": "^1.2.3",
+    "react-native-vector-icons": "^7.1.0",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5"
   },
