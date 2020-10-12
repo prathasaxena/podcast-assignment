@@ -48,7 +48,7 @@ components distribution
 
 • "react-navigation" 
 
-## data structure
+## Data structure
    
   7 audio files has been uploaded to firebase cloud which has been used repeatedly in the app.
   
