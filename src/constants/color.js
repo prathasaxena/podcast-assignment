@@ -1,6 +1,7 @@
 export default colors = {
-    bgColor: '#880E4F',
+    bgColor: '#455A64',
     textColor: "#E8F5E9",
-    cardBgColor: "#FCE4EC"
+    cardBgColor: "#EFEBE9",
+    green:"#ECEFF1",
     
 }

@@ -1,25 +1,40 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet,Image, Dimensions, ScrollView } from 'react-native';
+import { View, Text, StyleSheet,Image, Dimensions, ScrollView,TouchableOpacity } from 'react-native';
 import { colors } from '../../constants';
 import Header from './Header';
 import EpisodesList from './EpisodesList';
-import { useDispatch } from 'react-redux'
-const { width, height} = Dimensions.get('window')
+import { useDispatch, useSelector } from 'react-redux'
+const { width, height } = Dimensions.get('window');
+import { Icon} from 'native-base'
 
 const ChannelDetails = (props) => { 
     const { channelName, image, titleDesc, listOfEpisodes } = props.route.params.value
     const dispatch = useDispatch();
-   
+    const selectedChannel = useSelector(state=>state.home.selectedChannel, () => {})
     useEffect(() => { 
         dispatch({type:'SELECTED_CHANNEL_OBJECT', payload: props.route.params.value})
     },[])
-   
+    const followChannel = () => { 
+        dispatch({type:'FOLLOW_CHANNELS', payload: selectedChannel})
+    }
+    console.log("dda",selectedChannel)
     return (
         <View style={styles.container}>
         <ScrollView bounces={false} style={{flex:1}}>
              {/* header */ }
             <Header name={channelName} />
-            {/* album's image */}
+                {/* album's image */}
+                <TouchableOpacity  onPress={()=> followChannel()}>
+                    {selectedChannel.following   ?
+                        <View style={styles.followViewParent}>
+                            <Icon type="Ionicons" name="remove-circle" style={styles.followIcon}/>
+                            <Text style={styles.followText}> Unfollow</Text>
+                        </View> :
+                        <View style={styles.followViewParent} >
+                        <Icon type="Ionicons" name="add-circle" style={styles.followIcon}/>
+                        <Text style={styles.followText}>Follow</Text>
+                        </View>}                 
+                </TouchableOpacity>
             <Image resizeMode="contain" style={styles.image} source={{ uri: image }} />
             {/* Description */}
             <View>
@@ -49,7 +64,7 @@ const styles = StyleSheet.create({
     image: {
         height: 200/765*height,
         width: width,
-        marginTop: 90/765*height,
+        marginTop: 20/765*height,
     },
     abouts: {
         marginTop: "5%",
@@ -70,5 +85,29 @@ const styles = StyleSheet.create({
     episodesListParent: {
         marginHorizontal: "3%",
         marginTop: "3%",
+    },
+    followViewParent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: "flex-end",
+        marginHorizontal: "3%",
+        marginTop: "3%",
+        marginBottom: 10 / 765 * height,
+        zIndex: 5,
+        elevation:1
+    },
+    followText: {
+        fontSize: 15,
+        color: colors.green,
+        fontWeight: "bold",
+        zIndex: 5,
+        elevation:1
+    },
+    followIcon: {
+        fontSize: 20,
+        color: colors.green,
+        fontWeight: "bold",
+        zIndex: 5,
+        elevation:1
     }
 })

@@ -24,7 +24,7 @@ const EpisodesList = (props) => {
     return (
         <FlatList
             data={props.data}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item) => item.name}
             renderItem={({ item}) => <SingleEpisodesCard item={item}/>}
         />
     )

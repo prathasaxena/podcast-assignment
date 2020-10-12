@@ -7,8 +7,10 @@ import Header from './Header';
 import { colors } from '../../constants';
 const { width, height } = Dimensions.get('window')
 
-export default function PlayEpisodes(props) {
+ const PlayEpisodes = (props) => {
     const playbackState = usePlaybackState();
+   const [descView, setDiscriptionview] = React.useState(true) // view more/view less description
+   const [showMore, setShowMore] = React.useState(true);
     const jumpInterval = 30 // jump forwrard/backwards by 30 secs
     const { name, description, audio, episode } = props.route.params.value  // route params
     const image = useSelector(state => state.home.selectedChannel.image) // image from global state
@@ -87,7 +89,11 @@ export default function PlayEpisodes(props) {
     }
     TrackPlayer.seekTo(newPosition);
   }
-
+   const onTextLayout = React.useCallback(e => {
+    console.log(e.nativeEvent.lines.length)
+    setShowMore(e.nativeEvent.lines.length >= 8);
+  }, [])
+  
     return (
       <View style={styles.container}>
         <ScrollView bounces={false} style={{flex:1}}>
@@ -105,7 +111,8 @@ export default function PlayEpisodes(props) {
             {/* Description */}
             <View>
                 <Text style={styles.abouts}> Episode {episode} </Text>
-                <Text style={styles.titleDesc}>{description}</Text>
+            <Text onTextLayout={onTextLayout} style={styles.titleDesc} numberOfLines={descView?8:null}>{description}</Text>
+            {showMore && <Text onPress={() => setDiscriptionview(!descView)} style={styles.viewMoreText}>{descView?"View More":"View Less"}</Text>}
             </View>
             </ScrollView>
         </View>  
@@ -113,7 +120,7 @@ export default function PlayEpisodes(props) {
   );
 }
 
-
+export default PlayEpisodes;
 
 const styles = StyleSheet.create({
   container: {
@@ -167,5 +174,10 @@ const styles = StyleSheet.create({
     episodesListParent: {
         marginHorizontal: "3%",
         marginTop: "3%",
-    },
+  },
+  viewMoreText: {
+    marginHorizontal: "3%",
+    marginBottom: "3%",
+    color: "#CE93D8",
+  }
 });

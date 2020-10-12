@@ -1,37 +1,26 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import React, {useEffect, useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../../constants';
 import SingleChannelCard from './SingleChannelCard';
 import { useSelector } from 'react-redux'
+import Explore from './Explore';
+import Following from './Following'
 
 const Home = (props) => {
     const home = useSelector(state => state.home)
-    
+    const [topTabs, setTopTabs] = useState(0)
     return (
         <View style={styles.parent}>
-              {/* top picks list */ }
-            <Text style={styles.topText}>Top Picks for you</Text>
-            <View style={styles.horizotalFlatListParent}>
-                 {/* data from data.json file */ }
-                <FlatList
-                    data={home.podcastList}
-                    keyExtractor={(item) => item.id}
-                    keyExtractor={({item},index)=> index}
-                    horizontal={true}
-                    renderItem={({ item }) => <SingleChannelCard item={item}/>}
-                />
+            <View style={{flexDirection:'row',marginTop:"10%"}}>
+                <Text onPress={()=>setTopTabs(0)} style={styles.topText}>Explore</Text>
+                <Text onPress={()=>setTopTabs(1)} style={styles.topText}>Following</Text>
             </View>
-              {/* trending list */ }
-            <Text style={styles.bottomText}>Trending</Text>
-            <View style={styles.flatListParent}>
-                <FlatList
-                    contentContainerStyle={{ paddingBottom: 100 }}
-                    kekeyExtractor={(item) => item.id}
-                    numColumns={2}
-                    data={home.podcastList}
-                    renderItem={({item})=><SingleChannelCard item={item}/>}
-                />
-            </View>
+            {
+                topTabs == 0 ?
+                    <Explore /> : 
+                    <Following/>
+            }
+             
         </View>
     )
 
@@ -46,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.bgColor,
     },
     topText: {
-        marginTop: "15%",
+        marginTop: "6%",
         marginLeft: "5%",
         fontSize: 20,
         fontWeight: 'bold',
