@@ -1,10 +1,11 @@
 import React, {useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,Dimensions } from 'react-native';
 import { colors } from '../../constants';
 import SingleChannelCard from './SingleChannelCard';
 import { useSelector } from 'react-redux'
 import Explore from './Explore';
 import Following from './Following'
+const { width, height } = Dimensions.get('window');
 
 const Home = (props) => {
     const home = useSelector(state => state.home)
@@ -15,8 +16,10 @@ const Home = (props) => {
                 <Text onPress={()=>setTopTabs(0)} style={styles.topText}>Explore</Text>
                 <Text onPress={()=>setTopTabs(1)} style={styles.topText}>Following</Text>
             </View>
+            {/* 0 := Eplore/ 1 := following list*/}
             {
                 topTabs == 0 ?
+                    
                     <Explore /> : 
                     <Following/>
             }
@@ -39,7 +42,8 @@ const styles = StyleSheet.create({
         marginLeft: "5%",
         fontSize: 20,
         fontWeight: 'bold',
-        color:colors.textColor 
+        color: colors.textColor,
+        width: 100 / 375 * width,
     },
     horizotalFlatListParent: {
         marginTop: "5%",

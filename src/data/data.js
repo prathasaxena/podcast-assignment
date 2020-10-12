@@ -396,21 +396,21 @@
                  "episode": 3,
                  "duration":121,
                 "description":"The Duolingo Spanish Podcast is back with new episodes starting March 26, 2020. Listen to the trailer now!",
-                "audio":"http://hwcdn.libsyn.com/p/f/5/a/f5ac5120a638b82b/S7_Trailer.mp3?c_id=67524320&cs_id=67524320&destination_id=607715&expiration=1602485938&hwt=00949e5a9b66d3629d66bc30e7624c24"
+                "audio":"https://firebasestorage.googleapis.com/v0/b/storage-ba443.appspot.com/o/S7_Trailer.mp3?alt=media&token=8b15b19f-1995-416c-8c6c-bf7af95eb993"
             },
             {
                 "name": "Trailer Season 8",
                 "episode": 2,
                 "duration":132,
                 "description":"The Duolingo Spanish Podcast is back with new episodes starting  July 2, 2020. Listen to the trailer now!",
-                "audio":"http://hwcdn.libsyn.com/p/4/c/c/4ccfb6ee74fef74f/Duolingo_Spanish_Podcast_Season_8_Trailer.mp3?c_id=76612835&cs_id=76612835&destination_id=607715&expiration=1602485856&hwt=71d3bc8a5385a9f0bd9ffe86292af21b"
+                "audio":"https://firebasestorage.googleapis.com/v0/b/storage-ba443.appspot.com/o/Duolingo_Spanish_Podcast_Season_8_Trailer.mp3?alt=media&token=d483923c-2742-4ba6-8d51-8282b04a7692"
             },
             {
                 "name": "Trailer Season 9",
                 "episode": 1,
                 "duration":153,
                 "description":"The Duolingo Spanish Podcast is back with new episodes starting  October 22, 2020. Listen to the trailer now!",
-                "audio":"http://hwcdn.libsyn.com/p/b/1/d/b1d390f2ca67d0ec/S9E0_-_El_gran_robo_argentino_trailer.mp3?c_id=82763933&cs_id=82763933&destination_id=607715&expiration=1602485721&hwt=6f0cc402d756f4714290bae27a121ea0"
+                "audio":"https://firebasestorage.googleapis.com/v0/b/storage-ba443.appspot.com/o/S9E0_-_El_gran_robo_argentino_trailer.mp3?alt=media&token=2bfcf4ea-13e2-494b-804f-4325f73c2ae3"
             }
         ]
       }

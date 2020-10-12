@@ -54,6 +54,7 @@ export default function PlayerControls(props) {
   const [duration, setDuration] = useState("");
   const [disableJumpFw, setDisableJumpFw] = useState(false)
   useTrackPlayerEvents(["playback-track-changed"], async event => {
+    // console.log("event",event)
     if (event.type === TrackPlayer.TrackPlayerEvents.PLAYBACK_TRACK_CHANGED) {
       const track = await TrackPlayer.getTrack(event.nextTrack?event.nextTrack:event.track);
     
@@ -125,7 +126,9 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   title: {
-    marginTop: 10
+    marginTop: 10,
+    width: 270 / 375 * width,
+    alignSelf:"center"
   },
   artist: {
     fontWeight: "bold"

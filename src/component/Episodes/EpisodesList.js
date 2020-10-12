@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
         width: 3 / 375 * width,
         height: 40 / 675 * height,
         backgroundColor: "black",
-        marginHorizontal:7/375*width
+        marginHorizontal: 7 / 375 * width,
+        alignSelf:"center"
     },
     name: {
         fontWeight: "bold",

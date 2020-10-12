@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import TrackPlayer, { usePlaybackState } from "react-native-track-player";
 import { useSelector} from 'react-redux'
 import {PlayerControls} from '../Player'
-import { View, Text, StyleSheet,Image, Dimensions, ScrollView, ImageBackground, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet,Image, Dimensions, ScrollView, Platform, ActivityIndicator } from 'react-native';
 import Header from './Header';
 import { colors } from '../../constants';
 const { width, height } = Dimensions.get('window')
@@ -35,7 +35,7 @@ const { width, height } = Dimensions.get('window')
    
   //  setting up track on mount 
    async function setup() {
-    await TrackPlayer.reset();
+    Platform.OS == "ios" && await TrackPlayer.reset();
     await TrackPlayer.setupPlayer({});
     await TrackPlayer.updateOptions({
         stopWithApp: true,
