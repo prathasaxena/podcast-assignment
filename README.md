@@ -4,7 +4,7 @@ Install android apk from this link : https://i.diawi.com/saQP37
 
 <div style="flex-direction:row">
 <img src="screenshots/Home.jpeg" width="200">
-<img src="screenshots/episodeList.png" width="200">
+<img src="screenshots/episodeList.jpeg" width="200">
 <img src="screenshots/player.jpeg" width="200">
 <img src="screenshots/notification.jpeg" width="200">
 </div>
