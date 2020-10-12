@@ -1,6 +1,6 @@
 # podcast-assignment
 
-Install the diawi apk from this link : 
+Install android apk from this link : https://i.diawi.com/saQP37
 
 <div style="flex-direction:row">
 <img src="screenshots/Home.jpeg" width="200">
