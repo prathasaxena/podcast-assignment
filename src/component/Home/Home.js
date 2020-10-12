@@ -13,8 +13,8 @@ const Home = (props) => {
     return (
         <View style={styles.parent}>
             <View style={{flexDirection:'row',marginTop:"10%"}}>
-                <Text onPress={()=>setTopTabs(0)} style={styles.topText}>Explore</Text>
-                <Text onPress={()=>setTopTabs(1)} style={styles.topText}>Following</Text>
+                <Text onPress={() => setTopTabs(0)} style={[styles.topText, topTabs == 0 && {color: colors.lightPink}]}>Explore</Text>
+                <Text onPress={()=>setTopTabs(1)} style={[styles.topText, topTabs == 1 && {color: colors.lightPink}]}>Following</Text>
             </View>
             {/* 0 := Eplore/ 1 := following list*/}
             {

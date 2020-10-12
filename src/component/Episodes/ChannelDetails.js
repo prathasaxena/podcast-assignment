@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState} from 'react';
 import { View, Text, StyleSheet,Image, Dimensions, ScrollView,TouchableOpacity } from 'react-native';
 import { colors } from '../../constants';
 import Header from './Header';
@@ -8,17 +8,23 @@ const { width, height } = Dimensions.get('window');
 import { Icon} from 'native-base'
 
 const ChannelDetails = (props) => { 
-    const { channelName, image, titleDesc, listOfEpisodes } = props.route.params.value
+    const [follow, setFollow] = useState(false)
+    const { channelName, image, titleDesc, listOfEpisodes, following } = props.route.params.value
     const dispatch = useDispatch();
     const selectedChannel = useSelector(state => state.home.selectedChannel, () => { })
     
-    // saving the channel to global state 
+    useEffect(() => { 
+        setFollow(following)
+    },[following])
+    
+    // saving the channel to global state
     useEffect(() => { 
         dispatch({type:'SELECTED_CHANNEL_OBJECT', payload: props.route.params.value})
     }, [])
 
     // follow/ unfollow action dispatch
     const followChannel = () => { 
+        setFollow(true)
         dispatch({type:'FOLLOW_CHANNELS', payload: selectedChannel})
     }
 
@@ -30,7 +36,7 @@ const ChannelDetails = (props) => {
                 {/* album's image */}
                 <TouchableOpacity onPress={() => followChannel()}>
                      {/* follow/ unfollow functionality */}
-                    {selectedChannel.following   ?
+                    {follow   ?
                         <View style={styles.followViewParent}>
                             <Icon type="Ionicons" name="remove-circle" style={styles.followIcon}/>
                             <Text style={styles.followText}> Unfollow</Text>

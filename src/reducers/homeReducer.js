@@ -13,18 +13,19 @@ export default homeReducer = (state = initialState, action) => {
             return {...state, selectedChannel: action.payload}
       case 'FOLLOW_CHANNELS':
         let prevList = state.following
-        let prevSelectedChannel = state.selectedChannel
+        let prevPodcastList = state.podcastList
         let newList = []
+        const podListIndex = prevPodcastList.findIndex(ele=>ele.channelName == action.payload.channelName)
         const index = state.following.findIndex(ele => ele.channelName == action.payload.channelName)
         if (index == -1) {
-          prevSelectedChannel["following"] = true
+          prevPodcastList[podListIndex]["following"] = true
           newList = [...prevList, action.payload]
         } else {
-          prevSelectedChannel["following"] = false
+          prevPodcastList[podListIndex]["following"] = false
           newList = prevList.filter(ele => ele.channelName != action.payload.channelName)
         }
-        Object.assign(state.selectedChannel,prevSelectedChannel);
-        return {...state, following: newList, selectedChannel:prevSelectedChannel}
+        Object.assign(state.podcastList,prevPodcastList);
+        return {...state, following: newList, podcastList:prevPodcastList}
       default:
         return state
     }
