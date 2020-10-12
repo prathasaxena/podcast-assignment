@@ -50,7 +50,6 @@ const ChannelDetails = (props) => {
             <Image resizeMode="contain" style={styles.image} source={{ uri: image }} />
             {/* Description */}
             <View>
-                <Text style={styles.abouts}> Abouts </Text>
                 <Text style={styles.titleDesc}>{titleDesc}</Text>
             </View>
              {/* episodes list */}

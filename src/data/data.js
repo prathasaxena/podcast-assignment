@@ -274,7 +274,8 @@
       },
       {
         "image": "https://cdn.tennis.com/uploads/img/2019/08/19/3c80fb20fc244471b9b13dfde5a54045/episode-detail-image.png",
-        "channelName": "Tennis.com",
+          "channelName": "Tennis.com",
+        "titleDesc":"Tune in each Wednesday to hear experts and ATP/WTA players talk about everything tennis, from happenings on the court to what goes on behind the scenes on tour and in the pressroom.",
         "following":false,
           "listOfEpisodes": [
             {
