@@ -48,11 +48,25 @@ components distribution
 
 • "react-navigation" 
 
+## data structure
    
-   
- 
-   
-   
-   
-   
-
+  7 audio files has been uploaded to firebase cloud which has been used repeatedly in the app.
+  
+  The data object has been defined inside data folder which is placed under src folder.
+  The blueprint of data object is as follows:
+  
+        {
+         "image": "String",
+         "channelName": "String",
+         "following":boolean,
+         "titleDesc":"String",
+         "listOfEpisodes":[
+            {
+                 "name": "String",
+                 "episode": number,
+                 "duration":number,
+                "description":"String",
+                "audio":"String"
+            },
+           ]
+          }
