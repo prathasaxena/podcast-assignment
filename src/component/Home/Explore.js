@@ -25,7 +25,7 @@ const Explore = (props) => {
             <View style={styles.flatListParent}>
                 <FlatList
                     contentContainerStyle={{ paddingBottom: 100 }}
-                    kekeyExtractor={(item) => item.channelName}
+                    keyExtractor={(item) => item.channelName}
                     numColumns={2}
                     data={home.podcastList}
                     renderItem={({item})=><SingleChannelCard item={item}/>}

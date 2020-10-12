@@ -12,7 +12,7 @@ const SingleChannelCard = React.memo(({item}) => {
             {/* channel image */ }
             <Image resizeMode="cover" style={styles.image} source={{ uri: item.image }} />
              {/* channel name */ }
-            <Text style={styles.bottomText}>{item.channelName}</Text>
+            <Text style={styles.bottomText} numberOfLines={1}>{item.channelName}</Text>
          </TouchableOpacity>   
     )
 })
@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
         alignSelf:"center",
         fontSize: 15,
         fontWeight: 'bold',
-        color:"#880E4F"
+        color: "#880E4F",
+        textAlign: 'center',
+        width: 130 / 375 * width,
     }
 })

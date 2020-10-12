@@ -10,21 +10,26 @@ import { Icon} from 'native-base'
 const ChannelDetails = (props) => { 
     const { channelName, image, titleDesc, listOfEpisodes } = props.route.params.value
     const dispatch = useDispatch();
-    const selectedChannel = useSelector(state=>state.home.selectedChannel, () => {})
+    const selectedChannel = useSelector(state => state.home.selectedChannel, () => { })
+    
+    // saving the channel to global state 
     useEffect(() => { 
         dispatch({type:'SELECTED_CHANNEL_OBJECT', payload: props.route.params.value})
-    },[])
+    }, [])
+
+    // follow/ unfollow action dispatch
     const followChannel = () => { 
         dispatch({type:'FOLLOW_CHANNELS', payload: selectedChannel})
     }
-    console.log("dda",selectedChannel)
+
     return (
         <View style={styles.container}>
         <ScrollView bounces={false} style={{flex:1}}>
              {/* header */ }
             <Header name={channelName} />
                 {/* album's image */}
-                <TouchableOpacity  onPress={()=> followChannel()}>
+                <TouchableOpacity onPress={() => followChannel()}>
+                     {/* follow/ unfollow functionality */}
                     {selectedChannel.following   ?
                         <View style={styles.followViewParent}>
                             <Icon type="Ionicons" name="remove-circle" style={styles.followIcon}/>
@@ -35,6 +40,7 @@ const ChannelDetails = (props) => {
                         <Text style={styles.followText}>Follow</Text>
                         </View>}                 
                 </TouchableOpacity>
+                 {/* artwork */}
             <Image resizeMode="contain" style={styles.image} source={{ uri: image }} />
             {/* Description */}
             <View>

@@ -8,12 +8,15 @@ const SingleEpisodesCard = React.memo(({ item }) => {
     const navigation = useNavigation()
     return (
         <TouchableOpacity style={styles.episodesCard} onPress={() => navigation.navigate('PlayEpisodes', {value:item})}>
-            <View style={{ flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
+                 {/* episode number */}
                 <Text style={styles.episodes}>{item.episode}</Text>
                 <View style={styles.divider} />
                 <View>
+                     {/* episode name */}
                     <Text numberOfLines={1} style={styles.name}>{item.name}</Text>
-                    <Text style={styles.time} numberOfLines={1}>{item.name}</Text>
+                     {/* episode description */}
+                    <Text style={styles.decp} numberOfLines={2}>{item.description}</Text>
                 </View>
             </View>    
          </TouchableOpacity>
@@ -44,6 +47,7 @@ const styles = StyleSheet.create({
     },
     episodes: {
         fontSize: 25,
+        
         fontWeight: "bold",
         alignSelf:'center'
     },
@@ -55,6 +59,11 @@ const styles = StyleSheet.create({
     },
     name: {
         fontWeight: "bold",
+        width: 250 / 375 * width,
         fontSize:13
+    },
+    decp: {
+        width: 250 / 375 * width,
+        fontSize:13    
     }
 })

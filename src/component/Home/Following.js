@@ -9,7 +9,7 @@ const Explore = (props) => {
 
     return (
         <View style={{flex:1}}>
-              {/* top picks list */ }
+              {/* followed channels list */ }
             { home.following.length < 1 ?
                 <View style={styles.noDataList}>
                     <Text style={styles.warningStyle}>No Channels found</Text>
@@ -17,7 +17,7 @@ const Explore = (props) => {
             <View style={styles.flatListParent}>
                 <FlatList
                     contentContainerStyle={{ paddingBottom: 100 }}
-                    kekeyExtractor={(item) => item.channelName}
+                    keyExtractor={(item) => item.channelName}
                     numColumns={2}
                     data={home.following}
                     renderItem={({item})=><SingleChannelCard item={item}/>}

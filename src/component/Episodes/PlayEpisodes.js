@@ -12,25 +12,30 @@ const { width, height } = Dimensions.get('window')
    const [descView, setDiscriptionview] = React.useState(true) // view more/view less description
    const [showMore, setShowMore] = React.useState(true);
     const jumpInterval = 30 // jump forwrard/backwards by 30 secs
-    const { name, description, audio, episode } = props.route.params.value  // route params
+    const { name, description, audio, episode , duration} = props.route.params.value  // route params
     const image = useSelector(state => state.home.selectedChannel.image) // image from global state
-  useEffect(() => {
+   useEffect(() => {
       setup();
  
   }, []);
+   
+  //  playing track after setup 
     async function playTrackOnMount() { 
-          await TrackPlayer.reset();
+          
           await TrackPlayer.add({
-            id: "local-track",
+            id: `id-${name}`,
             url: audio,
             title: name,
             artist:"",
             artwork: image,
-            duration: await TrackPlayer.getDuration()
+            duration: duration
           });
           await TrackPlayer.play();
     }
-    async function setup() {
+   
+  //  setting up track on mount 
+   async function setup() {
+    await TrackPlayer.reset();
     await TrackPlayer.setupPlayer({});
     await TrackPlayer.updateOptions({
         stopWithApp: true,
@@ -49,48 +54,56 @@ const { width, height } = Dimensions.get('window')
         await playTrackOnMount();
   }
 
-  async function togglePlayback() {
-    const currentTrack = await TrackPlayer.getCurrentTrack();
-    if (currentTrack == null) {
-      await TrackPlayer.reset();
-      await TrackPlayer.add({
-        id: "local-track",
-        url: audio,
-          title: name,
-        artist:"",
-        artwork: image,
-        duration: await TrackPlayer.getDuration()
-      });
-      await TrackPlayer.play();
-    } else {
-      if (playbackState === TrackPlayer.STATE_PAUSED) {
-        await TrackPlayer.play();
-      } else {
-        await TrackPlayer.pause();
-      }
-    }
+   //toggle play and pause play and pause 
+   async function togglePlayback() {
+     try {
+       const currentTrack = await TrackPlayer.getCurrentTrack();
+       if (currentTrack == null) {
+         await TrackPlayer.reset();
+         await TrackPlayer.add({
+           id: `id-${name}`,
+           url: audio,
+           title: name,
+           artist: "",
+           artwork: image,
+           duration: duration
+         });
+         await TrackPlayer.play();
+       } else {
+         if (playbackState === TrackPlayer.STATE_PAUSED) {
+           await TrackPlayer.play();
+         } else {
+           await TrackPlayer.pause();
+         }
+       }
+     } catch (e) {
+      console.log("e", e)
+     }
   }
+   
+  // jump forward by 30 secs
+   async function jumpForward() {
+       let newPosition = await TrackPlayer.getPosition();
+       let duration = await TrackPlayer.getDuration();
+       newPosition += jumpInterval;
+     if (newPosition >= duration) {
+      newPosition = duration - 1;
     
-  async function jumpForward() {
-    let newPosition = await TrackPlayer.getPosition();
-    let duration = await TrackPlayer.getDuration();
-    newPosition += jumpInterval;
-    if (newPosition > duration) {
-      newPosition = duration;
-    }
-    TrackPlayer.seekTo(newPosition);
-}
+     
+     } 
+      TrackPlayer.seekTo(newPosition);
+   }
 
+   // jump backwards by 30 secs
  async function jumpBackwards() {
     let newPosition = await TrackPlayer.getPosition();
     newPosition -= jumpInterval;
     if (newPosition < 0) {
-      newPosition = 0;
+      newPosition = 1;
     }
     TrackPlayer.seekTo(newPosition);
   }
    const onTextLayout = React.useCallback(e => {
-    console.log(e.nativeEvent.lines.length)
     setShowMore(e.nativeEvent.lines.length >= 8);
   }, [])
   

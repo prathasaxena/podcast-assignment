@@ -11,9 +11,11 @@ const Header = (props) => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
+            {/* back button */}
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                 <Icon name="arrow-back-outline" style={styles.headerIcon} type="Ionicons"/>
             </TouchableOpacity>
+             {/* title */}
             <Text style={styles.heading} numberOfLines={1}>{props.name}</Text> 
         </View>
     )
