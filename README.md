@@ -1,3 +1,7 @@
+# Note
+If you run it on xcode 12, you might run into this issue:
+https://github.com/react-native-kit/react-native-track-player/issues/1034
+
 # podcast-assignment
 
 Install android apk from this link : https://i.diawi.com/saQP37
