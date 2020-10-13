@@ -4,7 +4,7 @@ https://github.com/react-native-kit/react-native-track-player/issues/1034
 
 # podcast-assignment
 
-Install android apk from this link : https://i.diawi.com/saQP37
+Install android apk from this link : https://i.diawi.com/zoxdPS
 
 <div style="flex-direction:row">
 <img src="screenshots/Home.jpeg" width="200">
